@@ -24,9 +24,12 @@ export default function GalleryPage() {
 
   useLayoutEffect(() => {
     if (location.state?.dialog) {
-      // remove dialog state from location
-      navigate(location.pathname, { replace: true });
       setMode("dialog");
+      // remove dialog state from location
+      navigate(location.pathname, {
+        replace: true,
+        state: { restoreScroll: false },
+      });
     }
   }, [location.pathname, location.state, navigate]);
 
@@ -41,7 +44,7 @@ export default function GalleryPage() {
             <Remix.Link
               to={`/p/${image.id}`}
               prefetch={"render"}
-              state={{ dialog: true }}
+              state={{ dialog: true, restoreScroll: false }}
             >
               <Gallery.Image src={image.src} />
             </Remix.Link>

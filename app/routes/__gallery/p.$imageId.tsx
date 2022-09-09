@@ -18,7 +18,7 @@ export default function GalleryImagePage() {
   const context = Remix.useOutletContext<{ dialog: boolean }>();
 
   return context.dialog ? (
-    <Dialog onClose={() => navigate("/")}>
+    <Dialog onClose={() => navigate("/", { state: { restoreScroll: false } })}>
       <PhotoSummary src={image.src} />
     </Dialog>
   ) : (
