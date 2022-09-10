@@ -1,10 +1,10 @@
-import type { LoaderFunction } from "@remix-run/node";
-import * as React from "react";
-import { json } from "@remix-run/node";
-import * as Remix from "@remix-run/react";
-import { useLayoutEffect } from "@radix-ui/react-use-layout-effect";
-import * as imageApi from "~/api/image.server";
-import * as Gallery from "~/components/gallery";
+import type { LoaderFunction } from '@remix-run/node';
+import * as React from 'react';
+import { json } from '@remix-run/node';
+import * as Remix from '@remix-run/react';
+import { useLayoutEffect } from '@radix-ui/react-use-layout-effect';
+import * as imageApi from '~/api/image.server';
+import * as Gallery from '~/components/gallery';
 
 type LoaderData = { images: Awaited<ReturnType<typeof imageApi.getImages>> };
 type Location = Remix.Location & { state: { dialog?: boolean } };
@@ -17,23 +17,20 @@ export const loader: LoaderFunction = async () => {
 
 export default function GalleryPage() {
   const data = Remix.useLoaderData<LoaderData>();
-  const [mode, setMode] = React.useState<"inline" | "dialog">("inline");
+  const [mode, setMode] = React.useState<'inline' | 'dialog'>('inline');
   const navigate = Remix.useNavigate();
   const location = Remix.useLocation() as Location;
-  const isPhoto = location.pathname.startsWith("/p/");
+  const isPhoto = location.pathname.startsWith('/p/');
 
   useLayoutEffect(() => {
     if (location.state?.dialog) {
-      setMode("dialog");
       // remove dialog state from location
-      navigate(location.pathname, {
-        replace: true,
-        state: { restoreScroll: false },
-      });
+      navigate(location.pathname, { replace: true, state: { restoreScroll: false } });
+      setMode('dialog');
     }
   }, [location.pathname, location.state, navigate]);
 
-  return isPhoto && mode === "inline" ? (
+  return isPhoto && mode === 'inline' ? (
     <Remix.Outlet context={{ dialog: false }} />
   ) : (
     <div>
@@ -43,7 +40,7 @@ export default function GalleryPage() {
           <Gallery.Item key={image.id}>
             <Remix.Link
               to={`/p/${image.id}`}
-              prefetch={"render"}
+              prefetch={'render'}
               state={{ dialog: true, restoreScroll: false }}
             >
               <Gallery.Image src={image.src} />

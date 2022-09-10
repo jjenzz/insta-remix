@@ -1,6 +1,6 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { useLayoutEffect } from "@radix-ui/react-use-layout-effect";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { useLayoutEffect } from '@radix-ui/react-use-layout-effect';
 
 /* -------------------------------------------------------------------------------------------------
  * Dialog
@@ -29,17 +29,17 @@ const Dialog = (props: DialogProps) => {
 
 const styles: Record<string, React.CSSProperties> = {
   overlay: {
-    backgroundColor: "rgba(0,0,0,0.5)",
-    position: "fixed",
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    position: 'fixed',
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
-    display: "grid",
-    placeItems: "center",
+    display: 'grid',
+    placeItems: 'center',
   },
   root: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
   },

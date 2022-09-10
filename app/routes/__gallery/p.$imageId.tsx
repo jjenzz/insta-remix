@@ -1,9 +1,9 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import * as Remix from "@remix-run/react";
-import * as imageApi from "~/api/image.server";
-import { Dialog } from "~/components/dialog";
-import { PhotoSummary } from "~/components/photo-summary";
+import type { LoaderFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
+import * as Remix from '@remix-run/react';
+import * as imageApi from '~/api/image.server';
+import { Dialog } from '~/components/dialog';
+import { PhotoSummary } from '~/components/photo-summary';
 
 type LoaderData = Awaited<ReturnType<typeof imageApi.getImage>>;
 
@@ -18,7 +18,7 @@ export default function GalleryImagePage() {
   const context = Remix.useOutletContext<{ dialog: boolean }>();
 
   return context.dialog ? (
-    <Dialog onClose={() => navigate("/", { state: { restoreScroll: false } })}>
+    <Dialog onClose={() => navigate('/', { state: { restoreScroll: false } })}>
       <PhotoSummary src={image.src} />
     </Dialog>
   ) : (
